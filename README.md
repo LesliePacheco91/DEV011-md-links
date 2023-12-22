@@ -43,7 +43,7 @@ para la instalación de de la librería se utiliza lo siguiente:
 
 ```shell
 
-`npm lp-md-links
+npm lp-md-links
 ```
 
 *** 
@@ -60,7 +60,7 @@ mediante el uso de los argumentos descritos a continuación se podrán visualiza
 Lista de links
 
 ```shell
-`md-links <path-to-file>
+md-links <path-to-file>
 ```
 
 ![md-links](images/Captura.PNG)
@@ -68,7 +68,7 @@ Lista de links
 Lista de links validados
 
 ```shell
-`md-links <path-to-file> --validate`
+md-links <path-to-file> --validate
 ```
 
 ![md-links](images/Captura1.PNG)
@@ -76,7 +76,7 @@ Lista de links validados
 Datos estadísticos 
 
 ```shell
-`md-links <path-to-file> --stats`
+md-links <path-to-file> --stats
 ```
 
 ![md-links](images/Captura2.PNG)
@@ -84,7 +84,7 @@ Datos estadísticos
 Datos estadísticos validados
 
 ```shell
-`md-links <path-to-file> --stats --validate`
+md-links <path-to-file> --stats --validate
 ```
 
 ![md-links](images/Captura3.PNG)
