@@ -19,19 +19,19 @@ La librería tiene el objetivo de leer el archivo markdow, leer el contenido, en
 
 * Lista de links
 
-![md-links](images\Captura.PNG)
+![md-links](images/Captura.PNG)
 
 * Lista de links validados
 
-![md-links](images\Captura1.PNG)
+![md-links](images/Captura1.PNG)
 
 * Datos estadísticos 
 
-![md-links](images\Captura2.PNG)
+![md-links](images/Captura2.PNG)
 
 * Datos estadísticos validados
 
-![md-links](images\Captura3.PNG)
+![md-links](images/Captura3.PNG)
 
 
 ***
