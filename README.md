@@ -63,7 +63,7 @@ Lista de links
 `md-links <path-to-file>
 ```
 
-![md-links](images\Captura.PNG)
+![md-links](images/Captura.PNG)
 
 Lista de links validados
 
@@ -71,7 +71,7 @@ Lista de links validados
 `md-links <path-to-file> --validate`
 ```
 
-![md-links](images\Captura1.PNG)
+![md-links](images/Captura1.PNG)
 
 Datos estadísticos 
 
@@ -79,7 +79,7 @@ Datos estadísticos
 `md-links <path-to-file> --stats`
 ```
 
-![md-links](images\Captura2.PNG)
+![md-links](images/Captura2.PNG)
 
 Datos estadísticos validados
 
@@ -87,10 +87,10 @@ Datos estadísticos validados
 `md-links <path-to-file> --stats --validate`
 ```
 
-![md-links](images\Captura3.PNG)
+![md-links](images/Captura3.PNG)
 
 
 ***
 # test realizados
 
-![md-links](images\Captura4.PNG)
+![md-links](images/Captura4.PNG)
