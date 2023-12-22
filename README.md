@@ -43,7 +43,7 @@ para la instalación de de la librería se utiliza lo siguiente:
 
 ```shell
 
-npm lp-md-links
+npm i lp-md-links
 ```
 
 *** 
