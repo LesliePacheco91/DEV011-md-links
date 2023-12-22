@@ -4,6 +4,7 @@ const fs = require('fs');
 const marked = require('marked');
 const axios = require('axios');
 const { error } = require('console');
+const { rejects } = require('assert');
 
 
 // valida si la ruta es absoluta
@@ -44,36 +45,35 @@ const extencionArchive = (route) => {
 
 } 
 
-function readArchive(ruta, callback) {
-   fs.readFile(ruta, 'utf-8', (err, data) => {
-     if (!err) {
 
-       callback(null, data); // Devuelve los datos leídos
-     }
+ // lee el archivo md y extrae los links y retorna un arreglo de objetos
+const extractLink =(route) =>  new Promise((resolve, reject) => {
+
+   return fs.readFile(route, 'utf-8', (err, data) => {
+      if (!err) {
+      
+         const urlRegex = /\[([^/[]+)\](\(.*\/\/[^\s]+)/g;
+      const urls = data.match(urlRegex);
+      
+         if(urls !== null){
+            const arrayMdl = urls.map((link) => {
+            const arrSplit = link.split('](');
+            const texto = arrSplit[0].replace('[', '');
+            const href = arrSplit[1].replace(')', '');
+            const file = route;
+            return ({ href, texto, file });
+            });
+            return resolve (arrayMdl);
+         }
+         
+      }else{
+         return reject(err);
+      }
    });
- }
-
- // extraer links de una .md  href, text, file
-const extractLink =(data, file) => {
-   const urlRegex = /\[([^/[]+)\](\(.*\/\/[^\s]+)/g;
-
-   const urls = data.match(urlRegex);
-
-   if(urls !== null){
-      const arrayMdl = urls.map((link) => {
-      const arrSplit = link.split('](');
-      const texto = arrSplit[0].replace('[', '');
-      const href = arrSplit[1].replace(')', '');
-      return ({ href, texto, file });
-      });
-      return arrayMdl;
-   }else{
-      return 'error';
-   }  
-}
+});
 
 // extraer links de una .md  href, text, file, status, ok
-const validateLinks = (arrObjs, status) => {
+const validateLinks = (arrObjs) => {
 
    const modifiedArrObjs = arrObjs.map((obj) => {
       
@@ -82,8 +82,6 @@ const validateLinks = (arrObjs, status) => {
             obj.status = response.status;
             obj.msj = response.statusText;
             return obj;
-
-
          })
          .catch((err) =>{
             obj.status = !err.response ? 404 : err.response.status;
@@ -116,7 +114,6 @@ module.exports = {
    convertAbsolute,
    isExistPath,
    extencionArchive,
-   readArchive,
    extractLink,
    validateLinks,
    statusLinks,

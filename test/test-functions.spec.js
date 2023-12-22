@@ -1,6 +1,60 @@
-const {isAbsolutePath, convertAbsolute, isExistPath,  extencionArchive, readArchive, extractLink, validateLinks } = require ('../src/function');
+const {isAbsolutePath, convertAbsolute, isExistPath,  extencionArchive, extractLink, validateLinks,statusLinks } = require ('../src/function');
 
+const route = "C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.mkd"; 
+const ruteFail = "";
+const arrayLinks = [
+    {
+      href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+      texto: 'Arreglos',
+      file: 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.mkd'
+    },
+    {
+      href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/',
+      texto: 'Array - MDN',
+      file: 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.mkd'
+    },
+    {
+      href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort',
+      texto: 'Array.prototype.sort() - MDN',
+      file: 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.mkd'
+    },
+    {
+      href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach',
+      texto: 'Array.prototype.forEach() - MDN',
+      file: 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.mkd'
+    }
+  ];
 
+  const arrayResul = [
+    {
+      href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays',
+      texto: 'Arreglos',
+      file: 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.mkd',
+      status: 200,
+      msj: 'OK'
+    },
+    {
+      href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/',
+      texto: 'Array - MDN',
+      file: 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.mkd',
+      status: 200,
+      msj: 'OK'
+    },
+    {
+      href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort',
+      texto: 'Array.prototype.sort() - MDN',
+      file: 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.mkd',
+      status: 200,
+      msj: 'OK'
+    },
+    {
+      href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach',
+      texto: 'Array.prototype.forEach() - MDN',
+      file: 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.mkd',
+      status: 200,
+      msj: 'OK'
+    }
+  ];
 
 describe('isAbsolutePath', () => {
     it('isAbsolutePath is a function', () => {
@@ -40,7 +94,7 @@ describe('isExistPath', () => {
     });
 
     it('retorna error si la url no existe en la compu', async() => {
-        const url = 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.md';
+        const url = 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba2.md';
         const datosObtenidos = await isExistPath(url);
         expect(datosObtenidos).toEqual('error');
     });
@@ -70,81 +124,65 @@ describe('extencionArchive', () => {
 
 });
 
-describe('readArchive', () => {
 
-    it('readArchive is a function', () => {
-        expect(typeof readArchive).toBe('function');
-    });
-
-    it('retorna el contenido del archivo',done => {
-        const url = 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba.md';
-
-        function callback(error, data) {
-            if (error) {
-              done(error);
-              expect(data).toBeNull();
-              //return;
-            }
-            try {
-              expect(data).not.toBeNull();
-              done();
-            } catch (error) {
-              done(error);
-            }
-          }
-        
-          readArchive(url,callback);
-    });
-    
-});
-
-/*
 describe('extractLink', () => {
     it('extractLink is a function', () => {
         expect(typeof extractLink).toBe('function');
     });
 
-    it('retorno de un objeto',() =>{
-        const url = 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba.md';
-        readArchive(url,(error, contenido)=>{
-            if (!error) {
-                const result = extractLink(url, contenido);
-                expect(result).toBeInstanceOf(Array);
-            }
+    it('debería retornar un array con objetos', () => {
+    
+        const url = "C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba1.mkd";
+        extractLink(url).then((data) => {
+
+            expect(data).toBeInstanceOf(Array);
         });
-        
     });
 
-   /* it('retorno de un objeto',() =>{
-        const url = 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba.md';
-        readArchive(url,(error, contenido)=>{
-            if (!error) {
-                const result = extractLink(url,contenido);
-                //console.log(result);
-                expect(result).toBeInstanceOf(Array);
-            }
-        });
-        
-    });
-*/
-    /*it('retorno error en caso de no haber links',() =>{
-
-        const url = 'C:/Users/lesli/Desktop/LABORATORIA/DEV011-md-links/docs/prueba.md';
-        readArchive(url,(error, contenido)=>{
-            if (!error) {
-                const result = extractLink(url,contenido);
-                //console.log(result);
-                expect(result).toBeInstanceOf(error);
-            }
-        });
-        
-    });*
+    it('debería retornar un array con objetos', () => extractLink(ruteFail).catch((err) => {
+            expect(err).not.toBe();
+    }));
 });
-*/
+
 describe('validateLinks',() =>{
 
     it('validateLinks is a function', () => {
         expect(typeof validateLinks).toBe('function');
+    });
+
+    it('Retorna un arreglo con el estatus de los links', () => validateLinks(arrayLinks).then(rest => {
+            
+            expect(rest).toEqual(arrayResul);
+        
+    }));
+
+    it('Retorna error  en caso de no haver links', () => validateLinks(arrayLinks).catch(err => {
+            
+        expect(err).toEqual('error');
+    
+}));
+
+});
+
+describe('statusLinks', () => {
+    it('statusLinks is a function', () => {
+        expect(typeof statusLinks).toBe('function');
+    });
+
+    it('retorna datos estadisticos', () => {
+        
+        const stats = statusLinks(arrayResul, {validate:true});
+
+       expect(stats).not.toBe();
+
+    });
+
+    it('retorna datos estadisticos', () => {
+        
+        const stats = statusLinks(arrayResul);
+
+       expect(stats).not.toBe();
+
     });
 
 });

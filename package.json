@@ -1,9 +1,25 @@
 {
-  "name": "md-links",
+  "name": "lp-md-links",
   "version": "0.1.0",
+  "description": "Librería para la validación de links de un archivo markdown",
+  "main":"src/cli.js",
+  "keywords": ["links", "markdown", ".md", "--validate", "stats"],
+  "author": {
+    "name":"Leslie Sharai Pacheco Cupul",
+    "email":"lesliepacheco@gmail.com",
+    "url":"https://www.linkedin.com/in/lesliesharaipacheco/"
+  },
+  "repository": {
+    "type":"git",
+    "url":"https://github.com/LesliePacheco91/DEV011-md-links"
+  },
+  "bin": {
+    "mdlinks": "./src/cli.js"
+  },
   "engines": {
     "node": ">=16.x"
   },
+
   "scripts": {
     "test": "jest --coverage"
   },
@@ -21,4 +37,5 @@
     "markdown-it": "^13.0.2",
     "marked": "^11.0.1"
   }
+
 }

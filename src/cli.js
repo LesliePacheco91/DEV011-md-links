@@ -1,5 +1,5 @@
+#!/usr/bin/env node
 
-// eslint-disable-next-line no-undef
 const { statusLinks } = require('./function');
 const { mdlinks } = require ('./md-links');
 
